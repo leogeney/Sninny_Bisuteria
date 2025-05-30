@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Colección Completa - Shinny Bisutería</title>
+  
+  <!-- Mismos estilos y recursos que la página principal -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+  
+  <style>
+    :root {
+      --color-rosa: #F472B6;
+      --color-rosa-oscuro: #E74799;
+      --color-rosa-claro: #FCE7F3;
+      --color-texto: #555;
+    }
+    
+    body {
+      font-family: 'Quicksand', sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+      color: var(--color-texto);
+    }
+    
+    /* Header mejorado */
+    header {
+      position: fixed;
+      width: 100%;
+      background: linear-gradient(135deg, #fff, #ffe4f1);
+      box-shadow: 0 2px 15px rgba(244, 114, 182, 0.15);
+      padding: 1rem 2rem;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      transition: all 0.3s ease;
+    }
+    
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      padding: 0.5rem 2rem;
+    }
+    
+    .logo-name {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--color-rosa-oscuro);
+      transition: all 0.3s ease;
+    }
+    
+    header.scrolled .logo-name {
+      font-size: 1.6rem;
+    }
+    
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    header.scrolled .logo-img {
+      width: 35px;
+      height: 35px;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+      flex: 1;
+      justify-content: flex-start;
+      margin-left: 2rem;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: var(--color-texto);
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 5px 0;
+    }
+    
+    nav a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--color-rosa);
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover:after, nav a.active:after {
+      width: 100%;
+    }
+    
+    nav a:hover, nav a.active {
+      color: var(--color-rosa);
+    }
+    
+    .socials {
+      display: flex;
+      gap: 1.2rem;
+      flex: 1;
+      justify-content: flex-end;
+    }
+    
+    .socials a {
+      color: var(--color-texto);
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+    
+    .socials a:hover {
+      color: var(--color-rosa);
+      transform: translateY(-3px);
+    }
+    
+    /* Hero section mejorada */
+    .productos-hero {
+      padding-top: 150px;
+      background: linear-gradient(135deg, #fff5f9, #ffebf3);
+      text-align: center;
+      padding-bottom: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .productos-hero:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.pinimg.com/originals/8a/9b/5b/8a9b5b3e7a6e5e8e5e5e5e5e5e5e5e5e.png') no-repeat;
+      background-size: 40%;
+      background-position: right bottom;
+      opacity: 0.05;
+      z-index: 0;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .productos-hero h1 {
+      font-size: 3.5rem;
+      color: var(--color-rosa-oscuro);
+      margin-bottom: 20px;
+      font-family: 'Pacifico', cursive;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .productos-hero p {
+      font-size: 1.3rem;
+      color: var(--color-rosa-oscuro);
+      max-width: 700px;
+      margin: 0 auto 40px;
+      font-weight: 500;
+    }
+    
+    .filtros {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .filtro-btn {
+      padding: 10px 25px;
+      background-color: white;
+      border: 2px solid var(--color-rosa);
+      border-radius: 30px;
+      color: var(--color-rosa);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(244, 114, 182, 0.1);
+    }
+    
+    .filtro-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(244, 114, 182, 0.2);
+    }
+    
+    .filtro-btn.active {
+      background-color: var(--color-rosa);
+      color: white;
+      box-shadow: 0 4px 15px rgba(244, 114, 182, 0.3);
+    }
+    
+    /* Grid de productos mejorado */
+    .productos-container {
+      padding: 40px 20px;
+      background-color: #fff;
+      position: relative;
+    }
+    
+    .productos-container:before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23f472b6"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23f472b6"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23f472b6"></path></svg>') no-repeat;
+      background-size: cover;
+    }
+    
+    .grid-productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 40px;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+    
+    .producto-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(244, 114, 182, 0.1);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+      position: relative;
+    }
+    
+    .producto-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(244, 114, 182, 0.2);
+    }
+    
+    .producto-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background-color: var(--color-rosa);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      z-index: 2;
+    }
+    
+    .producto-imagen-container {
+      height: 300px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .producto-imagen {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .producto-card:hover .producto-imagen {
+      transform: scale(1.1);
+    }
+    
+    .producto-info {
+      padding: 25px;
+      position: relative;
+    }
+    
+    .producto-info h3 {
+      font-size: 1.4rem;
+      color: #333;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    
+    .producto-precio {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--color-rosa);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .producto-precio .old-price {
+      font-size: 1rem;
+      color: #999;
+      text-decoration: line-through;
+      margin-left: 10px;
+    }
+    
+    .producto-desc {
+      font-size: 1rem;
+      color: #777;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+    
+    .producto-actions {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .producto-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-rosa);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      flex-grow: 1;
+      margin-right: 10px;
+    }
+    
+    .producto-btn:hover {
+      background-color: var(--color-rosa-oscuro);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(244, 114, 182, 0.4);
+    }
+    
+    .wishlist-btn {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: white;
+      border: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ccc;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .wishlist-btn:hover, .wishlist-btn.active {
+      color: var(--color-rosa);
+      border-color: var(--color-rosa);
+    }
+    
+    /* Paginación mejorada */
+    .paginacion {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 60px 0 30px;
+    }
+    
+    .pagina-btn {
+      width: 45px;
+      height: 45px;
+      background-color: white;
+      border: 1px solid #eee;
+      border-radius: 50%;
+      color: var(--color-texto);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+    
+    .pagina-btn:hover {
+      border-color: var(--color-rosa);
+      color: var(--color-rosa);
+    }
+    
+    .pagina-btn.active {
+      background-color: var(--color-rosa);
+      color: white;
+      border-color: var(--color-rosa);
+    }
+    
+    /* Footer mejorado */
+    footer {
+      background: linear-gradient(135deg, #fff, #fff5f9);
+      padding: 80px 20px 40px;
+      text-align: center;
+      position: relative;
+    }
+    
+    footer:before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23f472b6"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23f472b6"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23f472b6"></path></svg>') no-repeat;
+      background-size: cover;
+      transform: rotate(180deg);
+    }
+    
+    .footer-logo {
+      font-size: 2.2rem;
+      color: var(--color-rosa-oscuro);
+      margin-bottom: 25px;
+      font-weight: bold;
+      font-family: 'Pacifico', cursive;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .footer-logo img {
+      width: 50px;
+      margin-right: 15px;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .footer-links a {
+      color: var(--color-texto);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      position: relative;
+      padding: 5px 0;
+    }
+    
+    .footer-links a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--color-rosa);
+      transition: width 0.3s ease;
+    }
+    
+    .footer-links a:hover:after {
+      width: 100%;
+    }
+    
+    .footer-links a:hover {
+      color: var(--color-rosa);
+    }
+    
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+    
+    .footer-socials a {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: white;
+      color: var(--color-rosa);
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .footer-socials a:hover {
+      transform: translateY(-5px);
+      background-color: var(--color-rosa);
+      color: white;
+      box-shadow: 0 8px 20px rgba(244, 114, 182, 0.3);
+    }
+    
+    .newsletter-footer {
+      max-width: 500px;
+      margin: 0 auto 30px;
+    }
+    
+    .newsletter-footer h4 {
+      color: var(--color-rosa-oscuro);
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .newsletter-input {
+      flex-grow: 1;
+      padding: 12px 15px;
+      border: 2px solid #eee;
+      border-radius: 30px 0 0 30px;
+      outline: none;
+      font-family: 'Quicksand', sans-serif;
+    }
+    
+    .newsletter-btn {
+      padding: 0 20px;
+      background-color: var(--color-rosa);
+      color: white;
+      border: none;
+      border-radius: 0 30px 30px 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    
+    .newsletter-btn:hover {
+      background-color: var(--color-rosa-oscuro);
+    }
+    
+    .copyright {
+      color: #999;
+      font-size: 0.9rem;
+      margin-top: 30px;
+    }
+    
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .grid-productos {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        padding: 1rem;
+      }
+    
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin: 1rem 0;
+      }
+    
+      .socials {
+        justify-content: center;
+        margin-top: 1rem;
+      }
+    
+      .logo-name {
+        margin-bottom: 0.5rem;
+      }
+      
+      .productos-hero {
+        padding-top: 180px;
+      }
+      
+      .productos-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .productos-hero p {
+        font-size: 1.1rem;
+      }
+      
+      .filtros {
+        gap: 10px;
+      }
+      
+      .filtro-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+      
+      .producto-imagen-container {
+        height: 250px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .productos-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .producto-actions {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .producto-btn {
+        margin-right: 0;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .newsletter-input, .newsletter-btn {
+        border-radius: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header mejorado -->
+  <header id="main-header">
+    <nav style="background-color: transparent; box-shadow: none;">
+      <ul>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="#" class="active">Productos</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="logo-name">
+      <img src="f8acce.png" alt="Shinny Bisutería" class="logo-img">
+      Shinny Bisutería
+    </div>
+
+    <div class="socials">
+      <a href="https://www.facebook.com/profile.php?id=100092667795654 "><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://www.instagram.com/shinny_bisuteria/"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://www.tiktok.com/@shinny_bisuteria"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://w.app/x0yhhp"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+  </header>
+
+  <!-- Sección Hero de Productos mejorada -->
+  <section class="productos-hero">
+    <div class="hero-content">
+      <h1 class="fade-in">Nuestra Colección Completa</h1>
+      <p class="fade-in delay-1">Descubre cada una de nuestras piezas únicas, creadas con amor para complementar tu estilo.</p>
+      
+      <div class="filtros fade-in delay-2">
+        <button class="filtro-btn active">Todos</button>
+        <button class="filtro-btn">Collares</button>
+        <button class="filtro-btn">Pulseras</button>
+        <button class="filtro-btn">Anillos</button>
+        <button class="filtro-btn">Aretes</button>
+        <button class="filtro-btn">Conjuntos</button>
+        <button class="filtro-btn">Ofertas</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grid de Productos mejorado -->
+  <div class="productos-container">
+    <div class="grid-productos">
+      <!-- Producto 1 -->
+      <div class="producto-card fade-in">
+        <span class="producto-badge">Nuevo</span>
+        <div class="producto-imagen-container">
+          <img src="foto1.jpeg" alt="Collar LR" class="producto-imagen">
+        </div>
+        <div class="producto-info">
+          <h3>Collar LR</h3>
+          <div class="producto-precio">$20.000 <span class="old-price">$25.000</span></div>
+          <p class="producto-desc">Collar elegante con detalles dorados y piedras brillantes que capturan la luz perfectamente.</p>
+          <div class="producto-actions">
+            <button class="producto-btn">Añadir al carrito</button>
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Producto 2 -->
+      <div class="producto-card fade-in delay-1">
+        <div class="producto-imagen-container">
+          <img src="foto2.jpeg" alt="Toque Especial" class="producto-imagen">
+        </div>
+        <div class="producto-info">
+          <h3>Toque Especial</h3>
+          <div class="producto-precio">$15.000</div>
+          <p class="producto-desc">Pulsera ajustable con charms personalizados que cuentan tu historia única.</p>
+          <div class="producto-actions">
+            <button class="producto-btn">Añadir al carrito</button>
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Producto 3 -->
+      <div class="producto-card fade-in delay-2">
+        <span class="producto-badge">Más vendido</span>
+        <div class="producto-imagen-container">
+          <img src="foto3.jpeg" alt="Set Love" class="producto-imagen">
+        </div>
+        <div class="producto-info">
+          <h3>Set Love</h3>
+          <div class="producto-precio">$12.000</div>
+          <p class="producto-desc">Conjunto completo de aretes y anillo con diseño de corazón para ocasiones especiales.</p>
+          <div class="producto-actions">
+            <button class="producto-btn">Añadir al carrito</button>
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Producto 4 -->
+      <div class="producto-card fade-in">
+        <div class="producto-imagen-container">
+          <img src="collar1.jpeg" alt="Straps Funny" class="producto-imagen">
+        </div>
+        <div class="producto-info">
+          <h3>Straps Funny</h3>
+          <div class="producto-precio">$12.000</div>
+          <p class="producto-desc">Divertidos, coloridos y únicos. Collares hechos a mano que expresan tu estilo con alegría.</p>
+          <div class="producto-actions">
+            <button class="producto-btn">Añadir al carrito</button>
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Producto 5 -->
+      <div class="producto-card fade-in delay-1">
+        <span class="producto-badge">Oferta</span>
+        <div class="producto-imagen-container">
+          <img src="collar2.jpeg" alt="Brazalete Elegante" class="producto-imagen">
+        </div>
+        <div class="producto-info">
+          <h3>Set Black & White</h3>
+          <div class="producto-precio">$12.000 <span class="old-price">$15.000</span></div>
+          <p class="producto-desc">Minimalistas y elegantes. Brazaletes hechos a mano en blanco y negro, perfectos para cualquier ocasión.</p>
+          <div class="producto-actions">
+            <button class="producto-btn">Añadir al carrito</button>
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Producto 6 -->
+      <div class="producto-card fade-in delay-2">
+        <div class="producto-imagen-container">
+          <img src="collar3.jpeg" alt="Anillo de Perlas" class="producto-imagen">
+        </div>
+        <div class="producto-info">
+          <h3>Butterfly</h3>
+          <div class="producto-precio">$15.000</div>
+          <p class="producto-desc">Delicado y encantador. Collar con mariposa dorada que aporta un toque mágico a tu estilo.</p>
+          <div class="producto-actions">
+            <button class="producto-btn">Añadir al carrito</button>
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Producto 7 -->
+      <div class="producto-card fade-in">
+        <div class="producto-imagen-container">
+          <img src="collar4.jpeg" alt="Collar Minimalista" class="producto-imagen">
+        </div>
+        <div class="producto-info">
+          <h3>Perla Color</h3>
+          <div class="producto-precio">$6.000</div>
+          <p class="producto-desc"> Nudos coloridos con el toque elegante de una perla. Versátil, cómodo y siempre a la moda.</p>
+          <div class="producto-actions">
+            <button class="producto-btn">Añadir al carrito</button>
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Producto 8 -->
+      <div class="producto-card fade-in delay-1">
+        <span class="producto-badge">Nuevo</span>
+        <div class="producto-imagen-container">
+          <img src="collar5.jpeg" alt="Set Bohemio" class="producto-imagen">
+        </div>
+        <div class="producto-info">
+          <h3>LovePop</h3>
+          <div class="producto-precio">$5.000</div>
+          <p class="producto-desc">Brazalete ajustable con corazón colorido y detalles dorados. Un toque dulce y vibrante para tu día.</p>
+          <div class="producto-actions">
+            <button class="producto-btn">Añadir al carrito</button>
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Producto 9 -->
+      <div class="producto-card fade-in delay-2">
+        <div class="producto-imagen-container">
+          <img src="collar6.jpeg" alt="Aretes de Mariposa" class="producto-imagen">
+        </div>
+        <div class="producto-info">
+          <h3>Set sunflowers</h3>
+          <div class="producto-precio">$12.000</div>
+          <p class="producto-desc">Un contraste elegante en blanco y negro, inspirado en la belleza simple y radiante del girasol. Ideal para un estilo moderno y lleno de significado.</p>
+          <div class="producto-actions">
+            <button class="producto-btn">Añadir al carrito</button>
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Paginación mejorada -->
+    <div class="paginacion">
+      <button class="pagina-btn"><i class="fas fa-chevron-left"></i></button>
+      <button class="pagina-btn active">1</button>
+      <button class="pagina-btn">2</button>
+      <button class="pagina-btn">3</button>
+      <button class="pagina-btn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+
+  <!-- Footer mejorado -->
+  <footer>
+    <div class="footer-logo">
+      <img src="f8acce.png" alt="Shinny Bisutería">
+      Shinny Bisutería
+    </div>
+    
+    <div class="footer-links">
+      <a href="index.html">Inicio</a>
+      <a href="#">Productos</a>
+      <a href="#">Sobre Nosotros</a>
+      <a href="#">Contacto</a>
+      <a href="#">Términos y Condiciones</a>
+      <a href="#">Preguntas Frecuentes</a>
+    </div>
+    
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/profile.php?id=100092667795654"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/shinny_bisuteria/"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@shinny_bisuteria"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://w.app/x0yhhp"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+    
+    <div class="newsletter-footer">
+      <h4>Suscríbete para recibir nuestras novedades</h4>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Tu correo electrónico" class="newsletter-input" required>
+        <button type="submit" class="newsletter-btn">Suscribir</button>
+      </form>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2025 Shinny Bisutería. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <script>
+    // Header que se reduce al hacer scroll
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('main-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Filtrado de productos
+    document.querySelectorAll('.filtro-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelector('.filtro-btn.active').classList.remove('active');
+        this.classList.add('active');
+        
+        // Aquí iría la lógica para filtrar los productos
+        // Por simplicidad, en este ejemplo solo mostramos todos
+      });
+    });
+    
+    // Paginación
+    document.querySelectorAll('.pagina-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        if(this.classList.contains('active')) return;
+        
+        document.querySelector('.pagina-btn.active').classList.remove('active');
+        this.classList.add('active');
+        
+        // Aquí iría la lógica para cambiar de página
+      });
+    });
+    
+    // Wishlist
+    document.querySelectorAll('.wishlist-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        this.classList.toggle('active');
+        const icon = this.querySelector('i');
+        if(this.classList.contains('active')) {
+          icon.classList.remove('far');
+          icon.classList.add('fas');
+        } else {
+          icon.classList.remove('fas');
+          icon.classList.add('far');
+        }
+      });
+    });
+    
+    // Animaciones al cargar
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      fadeElements.forEach(el => {
+        el.style.opacity = '0';
+      });
+      
+      setTimeout(() => {
+        fadeElements.forEach(el => {
+          el.style.opacity = '1';
+        });
+      }, 100);
+    });
+  </script>
+</body>
+</html>
